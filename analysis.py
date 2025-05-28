@@ -81,8 +81,6 @@ def make_factor_score_df(n,data):
     scaled_data = scaler.fit_transform(data)
     fa = FactorAnalyzer(n_factors=n,method='principal',rotation='varimax')
     fit = fa.fit(scaled_data)
-    loading = fit.loadings_.T
-    masked_loadings = np.where(np.abs(loading) >= 0.6, loading, 0)
-    factor_scores = data.values @ masked_loadings.T
+    factor_scores = fa.transform(scaled_data)
     df = pd.DataFrame(factor_scores,columns = [f"factor_{i+1}" for i in range(n)])
     return df
