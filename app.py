@@ -82,21 +82,21 @@ def load_factor_data():
         
         # Excel 파일들 로드
         try:
-            data_files['factor_loadings'] = pd.read_excel('data/factor_loadings.xlsx', index_col=0)
+            data_files['factor_loadings'] = pd.read_excel('data/factor_loadings_동행.xlsx', index_col=0)
             logger.info("Factor loadings loaded successfully")
         except FileNotFoundError:
-            st.warning("factor_loadings.xlsx 파일을 찾을 수 없습니다.")
+            st.warning("factor_loadings_동행.xlsx 파일을 찾을 수 없습니다.")
             data_files['factor_loadings'] = None
             
         try:
-            data_files['factor_score'] = pd.read_excel('data/factor_score.xlsx', index_col=0)
+            data_files['factor_score'] = pd.read_excel('data/factor_score_동행.xlsx', index_col=0)
             logger.info("Factor scores loaded successfully")
         except FileNotFoundError:
             st.warning("factor_score.xlsx 파일을 찾을 수 없습니다.")
             data_files['factor_score'] = None
             
         try:
-            data_files['stock_returns'] = pd.read_excel('data/krx.xlsx', index_col=0)
+            data_files['stock_returns'] = pd.read_excel('data/kospi200_rtn_동행.xlsx', index_col=0)
             logger.info("Stock returns loaded successfully")
         except FileNotFoundError:
             st.warning("ts_rtn.xlsx 파일을 찾을 수 없습니다.")
@@ -104,7 +104,7 @@ def load_factor_data():
 
         # Pickle 파일 로드
         try:
-            with open('data/coef.pickle', 'rb') as f:
+            with open('data/coef.pickle_동행', 'rb') as f:
                 data_files['factor_coefficients'] = pickle.load(f)
                 data_files['fa_object'] = pickle.load(f)
             logger.info("Pickle files loaded successfully")
@@ -275,10 +275,10 @@ elif page == "📊 백테스팅":
     if missing_files:
         st.error(f"다음 파일들이 누락되었습니다: {', '.join(missing_files)}")
         st.markdown("**필요한 파일들:**")
-        st.markdown("- data/factor_loadings.xlsx")
-        st.markdown("- data/factor_score.xlsx") 
-        st.markdown("- data/ts_rtn.xlsx")
-        st.markdown("- data/coef.pickle")
+        st.markdown("- data/factor_loadings_동행.xlsx")
+        st.markdown("- data/factor_score_동행.xlsx") 
+        st.markdown("- data/ts_rtn_동행.xlsx")
+        st.markdown("- data/coef.pickle_동행")
         st.stop()
     
     factor_score_df = data_dict['factor_score']
