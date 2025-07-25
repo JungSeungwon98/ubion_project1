@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://fursew.pythonanywhere.com/ -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>숫자의 마법사들</title>
+  <style>
+    .main-title {
+      font-family: 'Arial', sans-serif;
+      color: darkblue;
+      font-size: 36px;
+    }
+  </style>
+  <title>코스피 200 수익률 분석</title>
+  <script src="./숫자의 마법사들_files/chart.js.다운로드"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    h1 { text-align: center; color: #1f2937; }
+    canvas { max-width: 100%; margin: 2rem auto; display: block; }
+    table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: white; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
+    th { background: #f1f5f9; }
+  </style>
+</head>
+<body>
+  <h1>코스피 200 수익률 분석 (2010-2024)</h1>
+
+    <canvas id="lineChart" width="675" height="375" style="display: block; box-sizing: border-box; height: 500px; width: 900px;"></canvas>
+    <canvas id="returnChart" width="675" height="375" style="display: block; box-sizing: border-box; height: 500px; width: 900px;"></canvas>
+    <canvas id="barChart" width="675" height="375" style="display: block; box-sizing: border-box; height: 500px; width: 900px;"></canvas>
+
+  <table>
+    <thead>
+      <tr>
+        <th>연도</th>
+        <th>4월말 종가</th>
+        <th>연간 수익률 (%)</th>
+        <th>코스피200 누적수익률 (%)</th>
+        <th>포트폴리오 누적수익률 (%)</th>
+      </tr>
+    </thead>
+    <tbody id="dataTable">
+      <!-- 데이터 렌더링 -->
+    <tr>
+    <td>2010</td>
+    <td>227.95</td>
+    <td style="color: #059669">
+      -
+    </td>
+    <td style="color: #059669">
+      +0.00%
+    </td>
+    <td style="color: #dc2626">
+      +0.00%
+    </td>
+  </tr><tr>
+    <td>2011</td>
+    <td>290.39</td>
+    <td style="color: #059669">
+      +27.39%
+    </td>
+    <td style="color: #059669">
+      +27.39%
+    </td>
+    <td style="color: #dc2626">
+      +36.00%
+    </td>
+  </tr><tr>
+    <td>2012</td>
+    <td>264.35</td>
+    <td style="color: #dc2626">
+      -8.97%
+    </td>
+    <td style="color: #059669">
+      +15.97%
+    </td>
+    <td style="color: #dc2626">
+      +29.00%
+    </td>
+  </tr><tr>
+    <td>2013</td>
+    <td>255.72</td>
+    <td style="color: #dc2626">
+      -3.26%
+    </td>
+    <td style="color: #059669">
+      +12.18%
+    </td>
+    <td style="color: #dc2626">
+      +82.00%
+    </td>
+  </tr><tr>
+    <td>2014</td>
+    <td>255.33</td>
+    <td style="color: #dc2626">
+      -0.15%
+    </td>
+    <td style="color: #059669">
+      +12.01%
+    </td>
+    <td style="color: #dc2626">
+      +152.00%
+    </td>
+  </tr><tr>
+    <td>2015</td>
+    <td>266.42</td>
+    <td style="color: #059669">
+      +4.34%
+    </td>
+    <td style="color: #059669">
+      +16.88%
+    </td>
+    <td style="color: #dc2626">
+      +175.00%
+    </td>
+  </tr><tr>
+    <td>2016</td>
+    <td>245.20</td>
+    <td style="color: #dc2626">
+      -7.96%
+    </td>
+    <td style="color: #059669">
+      +7.57%
+    </td>
+    <td style="color: #dc2626">
+      +192.00%
+    </td>
+  </tr><tr>
+    <td>2017</td>
+    <td>287.21</td>
+    <td style="color: #059669">
+      +17.13%
+    </td>
+    <td style="color: #059669">
+      +26.00%
+    </td>
+    <td style="color: #dc2626">
+      +180.00%
+    </td>
+  </tr><tr>
+    <td>2018</td>
+    <td>323.56</td>
+    <td style="color: #059669">
+      +12.66%
+    </td>
+    <td style="color: #059669">
+      +41.94%
+    </td>
+    <td style="color: #dc2626">
+      +170.00%
+    </td>
+  </tr><tr>
+    <td>2019</td>
+    <td>284.92</td>
+    <td style="color: #dc2626">
+      -11.94%
+    </td>
+    <td style="color: #059669">
+      +24.99%
+    </td>
+    <td style="color: #dc2626">
+      +145.00%
+    </td>
+  </tr><tr>
+    <td>2020</td>
+    <td>258.15</td>
+    <td style="color: #dc2626">
+      -9.40%
+    </td>
+    <td style="color: #059669">
+      +13.25%
+    </td>
+    <td style="color: #dc2626">
+      +93.00%
+    </td>
+  </tr><tr>
+    <td>2021</td>
+    <td>422.36</td>
+    <td style="color: #059669">
+      +63.61%
+    </td>
+    <td style="color: #059669">
+      +85.29%
+    </td>
+    <td style="color: #dc2626">
+      +220.00%
+    </td>
+  </tr><tr>
+    <td>2022</td>
+    <td>355.08</td>
+    <td style="color: #dc2626">
+      -15.93%
+    </td>
+    <td style="color: #059669">
+      +55.77%
+    </td>
+    <td style="color: #dc2626">
+      +165.00%
+    </td>
+  </tr><tr>
+    <td>2023</td>
+    <td>326.46</td>
+    <td style="color: #dc2626">
+      -8.06%
+    </td>
+    <td style="color: #059669">
+      +43.22%
+    </td>
+    <td style="color: #dc2626">
+      +108.00%
+    </td>
+  </tr><tr>
+    <td>2024</td>
+    <td>365.13</td>
+    <td style="color: #059669">
+      +11.85%
+    </td>
+    <td style="color: #059669">
+      +60.18%
+    </td>
+    <td style="color: #dc2626">
+      +138.00%
+    </td>
+  </tr></tbody>
+  </table>
+
+  <script>
+    const data = [{"year": 2010, "price": 227.95, "cumulativeReturn": 0.0, "yearlyReturn": 0, "portfolioCumReturn": 0}, {"year": 2011, "price": 290.39, "cumulativeReturn": 27.39, "yearlyReturn": 27.39, "portfolioCumReturn": 36}, {"year": 2012, "price": 264.35, "cumulativeReturn": 15.97, "yearlyReturn": -8.97, "portfolioCumReturn": 29}, {"year": 2013, "price": 255.72, "cumulativeReturn": 12.18, "yearlyReturn": -3.26, "portfolioCumReturn": 82}, {"year": 2014, "price": 255.33, "cumulativeReturn": 12.01, "yearlyReturn": -0.15, "portfolioCumReturn": 152}, {"year": 2015, "price": 266.42, "cumulativeReturn": 16.88, "yearlyReturn": 4.34, "portfolioCumReturn": 175}, {"year": 2016, "price": 245.2, "cumulativeReturn": 7.57, "yearlyReturn": -7.96, "portfolioCumReturn": 192}, {"year": 2017, "price": 287.21, "cumulativeReturn": 26.0, "yearlyReturn": 17.13, "portfolioCumReturn": 180}, {"year": 2018, "price": 323.56, "cumulativeReturn": 41.94, "yearlyReturn": 12.66, "portfolioCumReturn": 170}, {"year": 2019, "price": 284.92, "cumulativeReturn": 24.99, "yearlyReturn": -11.94, "portfolioCumReturn": 145}, {"year": 2020, "price": 258.15, "cumulativeReturn": 13.25, "yearlyReturn": -9.4, "portfolioCumReturn": 93}, {"year": 2021, "price": 422.36, "cumulativeReturn": 85.29, "yearlyReturn": 63.61, "portfolioCumReturn": 220}, {"year": 2022, "price": 355.08, "cumulativeReturn": 55.77, "yearlyReturn": -15.93, "portfolioCumReturn": 165}, {"year": 2023, "price": 326.46, "cumulativeReturn": 43.22, "yearlyReturn": -8.06, "portfolioCumReturn": 108}, {"year": 2024, "price": 365.13, "cumulativeReturn": 60.18, "yearlyReturn": 11.85, "portfolioCumReturn": 138}];
+    console.log("데이터 확인:", data);
+  </script>
+
+  <!-- Flask static 경로 사용 -->
+  <script src="./숫자의 마법사들_files/chart(1).js.다운로드"></script>
+
+</body></html>

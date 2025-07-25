@@ -1,0 +1,75 @@
+const years = data.map(d => d.year);
+const prices = data.map(d => d.price);
+const cumulativeReturns = data.map(d => d.cumulativeReturn);
+const portfolioReturns = data.map(d => d.portfolioCumReturn);
+const yearlyReturns = data.map(d => d.yearlyReturn);
+
+const ctx1 = document.getElementById('lineChart');
+new Chart(ctx1, {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: [{
+      label: 'KOSPI 200 종가',
+      data: prices,
+      borderColor: '#2563eb',
+      backgroundColor: '#2563eb22',
+      fill: true
+    }]
+  }
+});
+
+const ctx2 = document.getElementById('returnChart');
+new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: [
+      {
+        label: '코스피200 누적수익률 (%)',
+        data: cumulativeReturns,
+        borderColor: '#059669',
+        fill: false
+      },
+      {
+        label: '포트폴리오 누적수익률 (%)',
+        data: portfolioReturns,
+        borderColor: '#dc2626',
+        fill: false
+      }
+    ]
+  }
+});
+
+const ctx3 = document.getElementById('barChart');
+new Chart(ctx3, {
+  type: 'bar',
+  data: {
+    labels: years.slice(1),
+    datasets: [{
+      label: '연간 수익률 (%)',
+      data: yearlyReturns.slice(1),
+      backgroundColor: yearlyReturns.slice(1).map(r => r >= 0 ? '#059669' : '#dc2626')
+    }]
+  }
+});
+
+// 테이블 렌더링
+const tbody = document.getElementById('dataTable');
+data.forEach(d => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${d.year}</td>
+    <td>${d.price.toFixed(2)}</td>
+    <td style="color: ${d.yearlyReturn >= 0 ? '#059669' : '#dc2626'}">
+      ${d.year === 2010 ? '-' : `${d.yearlyReturn >= 0 ? '+' : ''}${d.yearlyReturn.toFixed(2)}%`}
+    </td>
+    <td style="color: ${d.cumulativeReturn >= 0 ? '#059669' : '#dc2626'}">
+      ${d.cumulativeReturn >= 0 ? '+' : ''}${d.cumulativeReturn.toFixed(2)}%
+    </td>
+    <td style="color: ${d.portfolioCumReturn >= 0 ? '#dc2626' : '#dc2626'}">
+      ${d.portfolioCumReturn >= 0 ? '+' : ''}${d.portfolioCumReturn.toFixed(2)}%
+    </td>
+  `;
+  tbody.appendChild(tr);
+});
